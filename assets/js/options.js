@@ -27,7 +27,7 @@ $(document).ready(() => {
 
                         browser.alarms.create(nameElm.val().trim() + "_" + (Math.random() * 100), {
                             when: new Date(currentDate.getFullYear() + "-" + (currentMonth < 10 ? "0" : "") + currentMonth + "-" + 
-                                (currentDay < 10 ? "0" : "") + currentDay + 'T' + timeElm.val() + 'Z').getTime(),
+                                (currentDay < 10 ? "0" : "") + currentDay + 'T' + timeElm.val()).getTime(),
                             periodInMinutes: 1440
                         })
 
