@@ -5,24 +5,24 @@ $(document).ready(() => {
         .then((result) => {
             if (result.hasOwnProperty('alarms') && result.alarms) {
                 //get current time
-                const minutes = (new Date).getMinutes().toString().padStart(2, "0"),
-                    hours = (new Date).getHours().toString().padStart(2, "0"),
-                    now = new Date('1970-01-01T' + hours + ":" + minutes + 'Z').getTime()
+                const minutes = (new Date).getMinutes().toString().padStart(2, "0");
+                const hours = (new Date).getHours().toString().padStart(2, "0");
+                const now = new Date('1970-01-01T' + hours + ":" + minutes + 'Z').getTime();
                 //loop over the alarms and display them
                 result.alarms.forEach((alarm) => {
-                    const alarmTime = new Date('1970-01-01T' + alarm.time + 'Z').getTime()
+                    const alarmTime = new Date('1970-01-01T' + alarm.time + 'Z').getTime();
                     if (alarmTime > now) {
-                        appendItem(alarm.content, alarm.time)
+                        appendItem(alarm.content, alarm.time);
                     }
-                })
+                });
             } else {
                 //show no items available
-                appendItem('No alarms are available')
+                appendItem('No alarms are available');
             }
         });
 
     $("#optionsLink").on('click', () => {
-        browser.runtime.openOptionsPage()
+        browser.runtime.openOptionsPage();
     });
 
     function appendItem (content, badgeContent = null) {
