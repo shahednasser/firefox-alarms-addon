@@ -5,9 +5,9 @@ $(document).ready(() => {
         .then((result) => {
             if (result.hasOwnProperty('alarms') && result.alarms) {
                 //get current time
-                const minutes = (new Date).getMinutes(),
-                    hours = (new Date).getHours(),
-                    now = new Date('1970-01-01T' + (hours < 10 ? "0" : "") + hours + ":" + (minutes < 10 ? "0" : "") + minutes + 'Z').getTime()
+                const minutes = (new Date).getMinutes().toString().padStart(2, "0"),
+                    hours = (new Date).getHours().toString().padStart(2, "0"),
+                    now = new Date('1970-01-01T' + hours + ":" + minutes + 'Z').getTime()
                 //loop over the alarms and display them
                 result.alarms.forEach((alarm) => {
                     const alarmTime = new Date('1970-01-01T' + alarm.time + 'Z').getTime()

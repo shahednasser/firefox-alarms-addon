@@ -22,12 +22,12 @@ $(document).ready(() => {
                     .then(() => {
                         //create a new alarm
                         const currentDate = new Date,
-                            currentMonth = currentDate.getMonth() + 1,
-                            currentDay = currentDate.getDate()
+                            currentMonth = (currentDate.getMonth() + 1).toString().padStart(2, "0"),
+                            currentDay = (currentDate.getDate() + 1).toString().padStart(2, "0")
 
                         browser.alarms.create(nameElm.val().trim() + "_" + (Math.random() * 100), {
-                            when: new Date(currentDate.getFullYear() + "-" + (currentMonth < 10 ? "0" : "") + currentMonth + "-" + 
-                                (currentDay < 10 ? "0" : "") + currentDay + 'T' + timeElm.val()).getTime(),
+                            when: new Date(currentDate.getFullYear() + "-" + currentMonth + "-" + currentDay + 'T' + 
+                                timeElm.val()).getTime(),
                             periodInMinutes: 1440
                         })
 
