@@ -9,12 +9,14 @@ $(document).ready(() => {
         browser.storage.sync.get(['alarms'])
             .then((result) => {
                 let alarms = result.alarms;
+                const alarmName = nameElm.val().trim() + '_' + (Math.random() * 100);
                 if (!alarms) {
                     alarms = [];
                 }
                 alarms.push({
                     content: nameElm.val().trim(),
-                    time: timeElm.val()
+                    time: timeElm.val(),
+                    alarmName
                 });
 
                 //set alarms in the storage
@@ -25,7 +27,7 @@ $(document).ready(() => {
                         const currentMonth = (currentDate.getMonth() + 1).toString().padStart(2, '0');
                         const currentDay = (currentDate.getDate()).toString().padStart(2, '0');
 
-                        browser.alarms.create(nameElm.val().trim() + '_' + (Math.random() * 100), {
+                        browser.alarms.create(alarmName, {
                             when: new Date(currentDate.getFullYear() + '-' + currentMonth + '-' + currentDay + 'T' + 
                                 timeElm.val()).getTime(),
                             periodInMinutes: 1440
