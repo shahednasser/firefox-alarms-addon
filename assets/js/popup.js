@@ -1,13 +1,13 @@
 $(document).ready(() => {
-    const listElement = $("#alarmsList");
+    const listElement = $('#alarmsList');
     
     browser.storage.sync.get(['alarms'])
         .then((result) => {
             if (result.hasOwnProperty('alarms') && result.alarms) {
                 //get current time
-                const minutes = (new Date).getMinutes().toString().padStart(2, "0");
-                const hours = (new Date).getHours().toString().padStart(2, "0");
-                const now = new Date('1970-01-01T' + hours + ":" + minutes + 'Z').getTime();
+                const minutes = (new Date).getMinutes().toString().padStart(2, '0');
+                const hours = (new Date).getHours().toString().padStart(2, '0');
+                const now = new Date('1970-01-01T' + hours + ':' + minutes + 'Z').getTime();
                 //loop over the alarms and display them
                 result.alarms.forEach((alarm) => {
                     const alarmTime = new Date('1970-01-01T' + alarm.time + 'Z').getTime();
